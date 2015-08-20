@@ -123,12 +123,24 @@ function make_order() {
                     <td <%== $s %>><%= $o->{quantity} %></td>
                     <td <%== $s %>><%= $o->{cost} %></td>
 % my $started = 0;
+% my ($first_state, $last_date);
 % for my $h (@{$o->{history}}) {
-                <%= $started ? "<tr>" : "" %>
+%   unless ($last_date) {
+%       $last_date = $h->{date};
+%       $first_state = $h->{status};
+%       next;
+%   }
+                <%== $started ? "<tr>" : "" %>
                     <td><%= $h->{date} %></td>
-                    <td><%= $h->{status} %></td>
+                    <td><%= $first_state %></td>
                 </tr>
+%   $first_state = $h->{status};
+%   $started = 1;
 % }
+                <%== $started ? "<tr>" : "" %>
+                    <td><%= $last_date %></td>
+                    <td><%= $first_state %></td>
+                </tr>
 % }
             </tbody>
         </table>
