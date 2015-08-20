@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title></title>
+<title>J.W Couriers</title>
 <meta charset="utf-8"><link href='css/italic.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<%= $general_url %>/css/reset.css" type="text/css" media="screen">
 <link rel="stylesheet" href="<%= $general_url %>/css/grid.css" type="text/css" media="screen">
