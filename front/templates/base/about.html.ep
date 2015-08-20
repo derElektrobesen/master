@@ -46,8 +46,8 @@
 					<div class="block">
 						<div class="grid_8">
 							<div class="grid-inner">
-							<h3>Cargo</h3>
-<div class="table-1" style="margin-top: 2em;">
+							<h2>Cargo</h2>
+<div class="table-1" style="margin-top: 2em; padding-left: 0;">
     <form>
         <table id="cargo-table">
             <thead>

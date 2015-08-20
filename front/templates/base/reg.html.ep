@@ -3,9 +3,8 @@
   <section class="intro-sign-in">
     <h3>Registration</h3>
      <article>
-            <form id="frm-login" onkeypress="usl(event)">
+            <form id="frm-login">
                 <div class="row-input">
-                   
                     <div class="col-left wide">
                         <label for="intro-name">Name</label>
                         <input name="intro-name" id="intro-name" type="text">
@@ -32,48 +31,98 @@
                         <label for="intro-password-confirm">Confirm password</label>
                         <input name="intro-password-confirm" id="intro-password-confirm" type="password">
                     </div>
-       	            
                 </div>
 %= javascript begin
-                    function usl(e) { if(e.keyCode == 13) login(); }
-                    function login() {
-                        var $frm = $("#frm-login"),
-                            $err = $("#frm-error"),
-                            login = $frm.find("[name=intro-login]").val(),
-                            pass = $frm.find("[name=intro-password]").val();
+function register() {
+    var name = $("#intro-name").val(),
+        surname = $("#intro-surname").val(),
+        login = $("#intro-login").val(),
+        email = $("#intro-email").val(),
+        $pass = $("#intro-password"),
+        $pass_c = $("#intro-password-confirm"),
+        $err = $("#modal-enter"),
+        $err_msg = $("#err_msg"),
+        $err_expl = $("#err_explain");
 
-                        if (login == "") { // TODO: Trim spaces
-							$("#modal-enter").reveal();
-                            return;
-                        }
-                        if (pass == "") {
-							$("#modal-enter").reveal();
-                            return;
-                        }
+    function drop_pass() {
+        $pass.val('');
+        $pass_c.val('');
+    }
 
-                        $.ajax({
-                                method: 'get',
-                                url: "<%= $general_url %>/cgi-bin/login",
-                                data: {
-                                    login: login,
-                                    password: pass,
-                                },
-                                success: function (data) {
-                                    window.location.href = "<%= $general_url %>/";
-                                },
-                                error: function (data) {
-                                    if (data && data.description) {
-										$("#modal-enter").reveal();
-                                    } else {
-										$("#modal-enter").reveal();
-                                    }
-                                },
-                            });
-                        return;
-                    }
+    if ($pass.val() != $pass_c.val()) {
+        $err_msg.text("Passwords are mismatches");
+        $err_expl.text("Check the passwords and retry");
+        $err.reveal();
+        drop_pass();
+        return;
+    }
+
+    var e = 0, pass = $pass.val();
+    [name, surname, login, email, pass].forEach(function (x) {
+        if (x.trim() == "")
+            e = 1;
+    });
+    if (e) {
+        $err_msg.text("An empty field found");
+        $err_expl.html("All given fields are required.<br />Retry input")
+        $err.reveal();
+        drop_pass();
+        return;
+    }
+
+    $.ajax({
+        method: 'get',
+        url: '<%= $general_url %>/cgi-bin/register',
+        data: {
+            ulogin: login,
+            password: pass,
+            uname: name,
+            ulastname: surname,
+            email: email,
+        },
+        success: function (data) {
+            if (data.error) {
+                $err_msg.text(data.error);
+                $err_expl.text(data.description);
+                $err.reveal();
+                drop_pass();
+            } else {
+                $err_msg.text("Success!");
+                $err_expl.text('');
+                $err.reveal();
+% if ($role ne 'admin') {
+                $(".close-reveal-modal").click(function () {
+                    $.ajax({
+                        method: 'get',
+                        url: "<%= $general_url %>/cgi-bin/login",
+                        data: {
+                            login: login,
+                            password: pass,
+                        },
+                        success: function (data) {
+                            window.location.href = "<%= $general_url %>/";
+                        },
+                        error: function (data) {
+                            $err_msg.text("Unexpected error happens");
+                            $err_expl.text("Please, retry later");
+                            $err.reveal();
+                        },
+                    });
+                });
+% }
+            }
+        },
+        error: function () {
+            $err_msg.text("Unexpected error happens");
+            $err_expl.text("Please, retry later");
+            $err.reveal();
+            drop_pass();
+        },
+    });
+}
 % end
                 <div class="row-button">
-                    <a href="#" onclick="login(); return false;">Register</a>
+                    <a href="#" onclick="register(); return false;">Register</a>
                 </div>
             </form>
      </article>
@@ -84,8 +133,8 @@
 <!--========== modal-enter ==========-->
 <div id="modal-enter" class="reveal-modal modal-enter">
  <div class="modal-center">
-    <h6>Login or password incorrect</h6>
-    <p>Check login and password please <br />and retry</p>
+    <h6 id="err_msg">Passwords are mismatches</h6>
+    <p id="err_explain">Check the passwords and retry again</p>
     <div>
       <a class="close-reveal-modal"  href="#">OK</a>
     </div>

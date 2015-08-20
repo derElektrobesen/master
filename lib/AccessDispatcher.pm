@@ -39,8 +39,8 @@ my %access_control = (
 
     'register' => {
         method => 'get',
-        access => 'Authorized',
-        roles  => 'admin',
+        access => 'full',
+        roles  => 'user',
     },
 
     'roles'    => {

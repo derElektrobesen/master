@@ -6,6 +6,7 @@ use MainConfig qw( FILES_HOST GENERAL_URL SESSION_PORT );
 
 my %access_rules = (
     '/'          => 'user',
+    '/register'  => 'user',
     '/cargo'     => 'manager',
     '/orders'    => 'user',
     '/manage'    => 'manager',

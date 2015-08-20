@@ -153,7 +153,10 @@ header{
 		padding-top: 40px;
 	}
 	.inner {
+        /*
 		background: #aaa;
+        */
+        background: url('../images/header-bg.gif') left top repeat;
 		border-top: 3px solid #aaa;
 		border-bottom: 3px solid #aaa;
 		padding-bottom: 44px;
@@ -213,7 +216,7 @@ header{
 	}
 
 	.testimonial-block {
-		background: #343434;
+		background: #423E3E;
 			border-radius: 5px;
 			color: #edf0f6; 
 			text-align: center;

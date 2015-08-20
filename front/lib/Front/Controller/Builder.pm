@@ -52,6 +52,16 @@ sub register {
 
 sub about {
     my $self = shift;
+
+    my $res = send_request($self,
+        method => 'get',
+        url => 'cargo',
+        port => DATA_PORT,
+    );
+
+    return $self->render(status => 500) unless $res;
+    $self->stash(cargo => $res->{cargo});
+
     return $self->render(template => 'base/about');
 }
 
