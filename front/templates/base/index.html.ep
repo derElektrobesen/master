@@ -49,9 +49,9 @@
 							<h2>Our company</h2>
 								<div class="wrapper">
 									<figure class="img-indent"><img src="<%= $general_url %>/images/image1.jpg" alt=""></figure>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+									JW Courier nationwide contract delivery services can deliver your goods to your customers as a reliable, professional service with as much attention to detail as your own staff. Alongside our contract delivery services we offer 3rd party logistics services.
 								</div>
-		<p class="pad">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.</p>
+								<p class="pad"> We provide you with a single point of contact who will coordinate and manage all aspects of the movement of your valuable cargo including freight forwarding and customs clearance.</p>
 							</div>
 						</div>
 						<div class="grid_4">
