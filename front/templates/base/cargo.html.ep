@@ -67,7 +67,7 @@ function add_cargo() {
         </table>
     </form>
 </div>
-<div class="report-request-form">
+<div class="report-request-form" id="cargo-add">
     <h3>Add new cargo</h3>
     <div class="row-input">
         <div class="col-left">

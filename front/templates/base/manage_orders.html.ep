@@ -51,7 +51,7 @@ function do_close(id, sel) {
 % end
 
 <section class="content">
-<div class="report-request-form">
+<div class="report-request-form" id="filter-orders">
     <h3>Filter Orders</h3>
     <div class="row-input">
         <div class="col-right">

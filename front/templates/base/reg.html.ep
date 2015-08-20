@@ -1,7 +1,13 @@
 % layout 'index';
 
   <section class="intro-sign-in">
-    <h3>Registration</h3>
+    <h3>
+% if ($role eq 'admin') {
+    Register new manager
+% } else {
+    Registration
+% }
+    </h3>
      <article>
             <form id="frm-login">
                 <div class="row-input">

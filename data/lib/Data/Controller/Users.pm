@@ -18,7 +18,7 @@ sub add {
 
     my $_params = $self->req->params->to_hash;
     if ($_params->{user_id}) {
-        $params->{role} = $_params->{role} || "user";
+        $params->{role} = $_params->{role} || "manager";
     } else {
         $params->{role} = "user";
     }
